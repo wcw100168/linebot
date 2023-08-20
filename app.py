@@ -63,6 +63,12 @@ def handle_message(event):
     if '行事曆' in msg:
         message = TextSendMessage(text='https://www.nchu.edu.tw/calendar/')
         line_bot_api.reply_message(event.reply_token, message)
+    if '推薦排課系統' in msg:
+        message = TextSendMessage(text='https://nchuclass.axisflow.biz/Login')
+        line_bot_api.reply_message(event.reply_token, message)
+    if '直屬' in msg:
+        message = TextSendMessage(text='要看係，有些系沒有，通常是和你同號碼的學長')
+        line_bot_api.reply_message(event.reply_token, message)
     if '選課推薦' in msg:
         img_url='https://megapx-assets.dcard.tw/images/12d3fe91-e447-44f7-9086-6ec1642b9656/full.jpeg'
         img_message = ImageSendMessage(original_content_url=img_url, preview_image_url=img_url)
