@@ -61,7 +61,7 @@ def handle_message(event):
         img_message = ImageSendMessage(original_content_url=img_url, preview_image_url=img_url)
         line_bot_api.reply_message(event.reply_token,img_message)
     if '新生EZ come' in msg:
-        message = TextSendMessage(text='單一簽證入口：''https://portal.nchu.edu.tw/portal/')
+        message = TextSendMessage(text='單一簽證入口：\n https://portal.nchu.edu.tw/portal/')
         line_bot_api.reply_message(event.reply_token, message)
     else:
         message = TextSendMessage(text='收到')
