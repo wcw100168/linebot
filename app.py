@@ -1,5 +1,5 @@
+@@ -1,68 +1,74 @@
 from flask import Flask, request, abort
-
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -7,15 +7,12 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import *
-
 #======python的函數庫==========
 import tempfile, os
 import datetime
 import openai
 import time
-import random
 #======python的函數庫==========
-
 app = Flask(__name__)
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 # Channel Access Token
@@ -24,8 +21,6 @@ line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
 handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 # OPENAI API Key初始化設定
 openai.api_key = os.getenv('OPENAI_API_KEY')
-
-
 #def GPT_response(text):
 #    # 接收回應
 #    response = openai.Completion.create(model="text-davinci-003", prompt=text, temperature=0.5, max_tokens=500)
@@ -33,8 +28,6 @@ openai.api_key = os.getenv('OPENAI_API_KEY')
 #    # 重組回應
 #    answer = response['choices'][0]['text'].replace('。','')
 #    return answer
-
-
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -49,14 +42,6 @@ def callback():
     except InvalidSignatureError:
         abort(400)
     return 'OK'
-
-def reply_img(text):
-    # 文字對應圖片網址的字典
-    img = {'https://megapx-assets.dcard.tw/images/12d3fe91-e447-44f7-9086-6ec1642b9656/full.jpeg',
-           'https://memeprod.sgp1.digitaloceanspaces.com/user-wtf/1604631271916.jpg',
-           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZFjmvS6JMNuUoPidFc3MvaOXKHP78IA7kLA&usqp=CAU'}
-    return img[text]
-
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -64,8 +49,7 @@ def handle_message(event):
     if '你好' in msg:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='我不好'))
     if '請問' in msg:
-        num=random.randint(0,3)
-        img_url=reply_img(num)
+        img_url='https://megapx-assets.dcard.tw/images/12d3fe91-e447-44f7-9086-6ec1642b9656/full.jpeg'
         img_message = ImageSendMessage(original_content_url=img_url, preview_image_url=img_url)
         line_bot_api.reply_message(event.reply_token,img_message)
     if '行事曆' in msg:
@@ -98,13 +82,9 @@ def handle_message(event):
 #        GPT_answer = GPT_response(msg)
 #        print(GPT_answer)
 #        line_bot_api.reply_message(event.reply_token, TextSendMessage(GPT_answer))
-
-
 @handler.add(PostbackEvent)
 def handle_message(event):
     print(event.postback.data)
-
-
 @handler.add(MemberJoinedEvent)
 def welcome(event):
     uid = event.joined.members[0].user_id
