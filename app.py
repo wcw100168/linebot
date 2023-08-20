@@ -60,6 +60,9 @@ def handle_message(event):
         img_url='https://megapx-assets.dcard.tw/images/12d3fe91-e447-44f7-9086-6ec1642b9656/full.jpeg'
         img_message = ImageSendMessage(original_content_url=img_url, preview_image_url=img_url)
         line_bot_api.reply_message(event.reply_token,img_message)
+    if '新生EZ come' in msg:
+        message = TextSendMessage(text='https://onepiece2-sso.nchu.edu.tw/cofsys/plsql/ezcome_main?p_init=Y')
+        line_bot_api.reply_message(event.reply_token, message)
     else:
         message = TextSendMessage(text='收到')
         line_bot_api.reply_message(event.reply_token, message)
