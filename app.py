@@ -59,10 +59,10 @@ def handle_message(event):
     if '你好' in msg:
         message = '我不好'
         line_bot_api.reply_message(event.reply_token, message)
-    else:
-        GPT_answer = GPT_response(msg)
-        print(GPT_answer)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(GPT_answer))
+#    else:
+#        GPT_answer = GPT_response(msg)
+#        print(GPT_answer)
+#        line_bot_api.reply_message(event.reply_token, TextSendMessage(GPT_answer))
 
 
 @handler.add(PostbackEvent)
