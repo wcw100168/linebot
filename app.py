@@ -58,7 +58,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, msg)
     else:
         message = TextSendMessage(text='收到')
-        line_bot_api.reply_message(event.reply_token, message)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='我不好'))
 #        GPT_answer = GPT_response(msg)
 #        print(GPT_answer)
 #        line_bot_api.reply_message(event.reply_token, TextSendMessage(GPT_answer))
