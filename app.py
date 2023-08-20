@@ -57,8 +57,7 @@ def handle_message(event):
     line_bot_api.reply_message(event.reply_token, message)
     msg = event.message.text
     if '你好' in msg:
-        message1 = TextSendMessage(text='我不好')
-    line_bot_api.reply_message(event.reply_token, message1)
+        line_bot_api.reply_message(event.reply_token, msg)
 #    else:
 #        GPT_answer = GPT_response(msg)
 #        print(GPT_answer)
