@@ -1,4 +1,3 @@
-@@ -1,68 +1,74 @@
 from flask import Flask, request, abort
 from linebot import (
     LineBotApi, WebhookHandler
