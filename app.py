@@ -66,9 +66,8 @@ def handle_message(event):
     if '選課推薦' in msg:
         img_url='https://megapx-assets.dcard.tw/images/12d3fe91-e447-44f7-9086-6ec1642b9656/full.jpeg'
         img_message = ImageSendMessage(original_content_url=img_url, preview_image_url=img_url)
-        line_bot_api.reply_message(event.reply_token,img_message)
         message = TextSendMessage(text='請善用網路\n''https://www.dcard.tw/topics/%E9%81%B8%E8%AA%B2')
-        line_bot_api.reply_message(event.reply_token, message)
+        line_bot_api.reply_message(event.reply_token, img_message ,message)
     if '新生EZ come' in msg:
         message = TextSendMessage(text='單一簽證入口：\n''https://portal.nchu.edu.tw/portal/\n''帳號：學號\n''密碼：身分證開頭字母大小寫＋身分證後4碼＋生日4碼\n\n''左側選單即有入口')
         line_bot_api.reply_message(event.reply_token, message)
