@@ -53,12 +53,12 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = TextSendMessage(text='收到')
-    line_bot_api.reply_message(event.reply_token, message)
     msg = event.message.text
     if '你好' in msg:
         line_bot_api.reply_message(event.reply_token, msg)
-#    else:
+    else:
+        message = TextSendMessage(text='收到')
+        line_bot_api.reply_message(event.reply_token, message)
 #        GPT_answer = GPT_response(msg)
 #        print(GPT_answer)
 #        line_bot_api.reply_message(event.reply_token, TextSendMessage(GPT_answer))
