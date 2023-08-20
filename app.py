@@ -58,7 +58,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='我不好'))
     if '請問' in msg:
         img_message = ImageSendMessage(original_content_url='https://megapx-assets.dcard.tw/images/12d3fe91-e447-44f7-9086-6ec1642b9656/full.jpeg', preview_image_url='https://megapx-assets.dcard.tw/images/12d3fe91-e447-44f7-9086-6ec1642b9656/full.jpeg')
-        line_bot_api.reply_message(tk,img_message)
+        line_bot_api.reply_message(event.reply_token,img_message)
     else:
         message = TextSendMessage(text='收到')
         line_bot_api.reply_message(event.reply_token, message)
