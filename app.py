@@ -54,12 +54,12 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    GPT_answer = GPT_response(msg)
-    print(GPT_answer)
     if '你好' in msg:
         message = '我不好'
         line_bot_api.reply_message(event.reply_token, message)
     else:
+        GPT_answer = GPT_response(msg)
+        print(GPT_answer)
         line_bot_api.reply_message(event.reply_token, TextSendMessage(GPT_answer))
 
 
