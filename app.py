@@ -13,6 +13,7 @@ import tempfile, os
 import datetime
 import openai
 import time
+import random
 #======python的函數庫==========
 
 app = Flask(__name__)
@@ -49,6 +50,12 @@ def callback():
         abort(400)
     return 'OK'
 
+def reply_img(text):
+    # 文字對應圖片網址的字典
+    img = {'https://megapx-assets.dcard.tw/images/12d3fe91-e447-44f7-9086-6ec1642b9656/full.jpeg',
+           'https://memeprod.sgp1.digitaloceanspaces.com/user-wtf/1604631271916.jpg',
+           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZFjmvS6JMNuUoPidFc3MvaOXKHP78IA7kLA&usqp=CAU'}
+    return img[text]
 
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
@@ -57,7 +64,8 @@ def handle_message(event):
     if '你好' in msg:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='我不好'))
     if '請問' in msg:
-        img_url='https://megapx-assets.dcard.tw/images/12d3fe91-e447-44f7-9086-6ec1642b9656/full.jpeg'
+        num=random.randint(0,3)
+        img_url=reply_img(num)
         img_message = ImageSendMessage(original_content_url=img_url, preview_image_url=img_url)
         line_bot_api.reply_message(event.reply_token,img_message)
     if '行事曆' in msg:
