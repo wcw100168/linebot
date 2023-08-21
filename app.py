@@ -81,10 +81,10 @@ def handle_message(event):
                                   'https://nchuclass.axisflow.biz/Login')
         line_bot_api.reply_message(event.reply_token, (image_message,message))
     if '關於我' in msg:
-        message = TextSendMessage(text='作者暑假太無聊所製作\n'
-                                  '系統啟動需要時間，如長時間已讀不回，請耐心等候\n'
-                                  '題材內容絕無參考112新生群製作;\n'
-                                  '如有雷同，就代表你也挺暴躁的')
+        message = TextSendMessage(text='🎈作者暑假太無聊所製作\n'
+                                  '🎈系統啟動需要時間，如長時間已讀不回，請耐心等候\n'
+                                  '🎈題材內容絕無參考112新生群製作;\n'
+                                  '🎈如有雷同，就代表你也挺暴躁的')
         line_bot_api.reply_message(event.reply_token, message)
     if '選課推薦' in msg:
         message = TextSendMessage(text='請善用網路\n'
