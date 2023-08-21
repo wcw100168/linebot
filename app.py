@@ -51,8 +51,12 @@ def callback():
     return 'OK'
 
 img_urls = ['https://megapx-assets.dcard.tw/images/12d3fe91-e447-44f7-9086-6ec1642b9656/full.jpeg',
+            'https://upload.cc/i1/2023/08/21/ANtXzT.jpg',
+            'https://upload.cc/i1/2023/08/21/3hEdHc.jpg',
+            'https://upload.cc/i1/2023/08/21/RxXuVN.jpg',
            'https://memeprod.sgp1.digitaloceanspaces.com/user-wtf/1604631271916.jpg',
-           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZFjmvS6JMNuUoPidFc3MvaOXKHP78IA7kLA&usqp=CAU']
+           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZFjmvS6JMNuUoPidFc3MvaOXKHP78IA7kLA&usqp=CAU'
+           'https://megapx-assets.dcard.tw/images/7db8fae0-c60c-42a8-9687-ce27c1cb8aee/full.png']
 
 
 # 處理訊息
