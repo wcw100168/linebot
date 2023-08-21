@@ -116,11 +116,10 @@ def handle_message(event):
 
 @handler.add(MemberJoinedEvent)
 def welcome(event):
-    uid = event.joined.members[0].user_id
-    gid = event.source.group_id
-    profile = line_bot_api.get_group_member_profile(gid, uid)
-    name = profile.display_name
-    message = TextSendMessage(text=f'{name}歡迎加入')
+    message = TextSendMessage(text='🎈作者暑假太無聊所製作\n'
+                                  '🎈系統啟動需要時間，如長時間已讀不回，請耐心等候\n'
+                                  '🎈題材內容絕無參考112新生群製作;\n'
+                                  '🎈如有雷同，就代表你也挺暴躁的')
     line_bot_api.reply_message(event.reply_token, message)
         
         
