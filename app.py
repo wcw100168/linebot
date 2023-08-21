@@ -58,7 +58,7 @@ img_urls = ['https://megapx-assets.dcard.tw/images/12d3fe91-e447-44f7-9086-6ec16
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    random_image_url = random.choice(image_urls)
+    random_image_url = random.choice(img_urls)
     image_message = ImageSendMessage(original_content_url=random_image_url,preview_image_url=random_image_url)
     msg = event.message.text
     if '你好' in msg:
