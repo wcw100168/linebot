@@ -69,16 +69,19 @@ def handle_message(event):
         img_message = ImageSendMessage(original_content_url=img_url, preview_image_url=img_url)
         line_bot_api.reply_message(event.reply_token,img_message)
     if '行事曆' in msg:
-        message = TextSendMessage(text='https://www.nchu.edu.tw/calendar/')
+        message = TextSendMessage(text='國立中興大學112學年度行事曆\n'
+                                  'https://www.nchu.edu.tw/calendar/')
         line_bot_api.reply_message(event.reply_token, (image_message,message))
     if '推薦排課系統' in msg:
-        message = TextSendMessage(text='https://nchuclass.axisflow.biz/Login')
+        message = TextSendMessage(text='推薦排課系統\n'
+                                  'https://nchuclass.axisflow.biz/Login')
         line_bot_api.reply_message(event.reply_token, (image_message,message))
-    if '直屬' in msg:
-        message = TextSendMessage(text='要看係，有些系沒有，通常是和你同號碼的學長')
-        line_bot_api.reply_message(event.reply_token, (image_message,message))
+    if '關於我' in msg:
+        message = TextSendMessage(text='作者暑假太無聊所製作，題材內容絕無參考112新生群製作;如有雷同，就代表你也挺暴躁的')
+        line_bot_api.reply_message(event.reply_token, message)
     if '選課推薦' in msg:
-        message = TextSendMessage(text='請善用網路\n''https://www.dcard.tw/search?query=%E9%81%B8%E8%AA%B2&forum=nchu')
+        message = TextSendMessage(text='請善用網路\n'
+                                  'https://www.dcard.tw/search?query=%E9%81%B8%E8%AA%B2&forum=nchu')
         line_bot_api.reply_message(event.reply_token, [img_message ,message] )
     if '新生EZ come' in msg:
         message = TextSendMessage(text='🎈單一簽證入口：\n'
@@ -88,7 +91,8 @@ def handle_message(event):
                                   '🎈左側選單即有入口')
         line_bot_api.reply_message(event.reply_token, (image_message,message))
     if '公車' in msg:
-        message = TextSendMessage(text='https://www.dcard.tw/f/nchu/p/252906645')
+        message = TextSendMessage(text='【FMOP｜臺中公車通】\n'
+                                  'https://www.dcard.tw/f/nchu/p/252906645')
         line_bot_api.reply_message(event.reply_token, (image_message,message))
     else:
         message = TextSendMessage(text='收到')
