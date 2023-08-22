@@ -108,7 +108,7 @@ def handle_message(event):
         if hot_posts_str:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=hot_posts_str))
         else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='当前没有热门帖子'))
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='我又壞了'))
     else:
         message = TextSendMessage(text='收到')
         line_bot_api.reply_message(event.reply_token, (image_message,message))
