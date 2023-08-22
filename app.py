@@ -7,6 +7,8 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import *
+import requests
+from bs4 import BeautifulSoup
 
 #======python的函數庫==========
 import tempfile, os
@@ -26,15 +28,6 @@ handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 
-#def GPT_response(text):
-#    # 接收回應
-#    response = openai.Completion.create(model="text-davinci-003", prompt=text, temperature=0.5, max_tokens=500)
-#    print(response)
-#    # 重組回應
-#    answer = response['choices'][0]['text'].replace('。','')
-#    return answer
-
-
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -50,6 +43,7 @@ def callback():
         abort(400)
     return 'OK'
 
+# 圖片串
 img_urls = ['https://megapx-assets.dcard.tw/images/12d3fe91-e447-44f7-9086-6ec1642b9656/full.jpeg',
             'https://i.ibb.co/D4wgZ4c/S-39297092.jpg',
             'https://i.ibb.co/dgc3xSM/S-39297094.jpg',
@@ -58,6 +52,16 @@ img_urls = ['https://megapx-assets.dcard.tw/images/12d3fe91-e447-44f7-9086-6ec16
            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZFjmvS6JMNuUoPidFc3MvaOXKHP78IA7kLA&usqp=CAU'
            'https://megapx-assets.dcard.tw/images/7db8fae0-c60c-42a8-9687-ce27c1cb8aee/full.png']
 
+# 获得 Dcard 热门帖子
+def get_dcard_hot_posts():
+    url = 'https://www.dcard.tw/f'
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    posts = []
+    for post in soup.find_all('h2', class_='tgn9uw-3'):
+        title = post.text.strip()
+        posts.append(title)
+    return posts
 
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
@@ -101,6 +105,10 @@ def handle_message(event):
         message = TextSendMessage(text='【FMOP｜臺中公車通】\n'
                                   'https://www.dcard.tw/f/nchu/p/252906645')
         line_bot_api.reply_message(event.reply_token, (image_message,message))
+    if 'Dcard' in msg:
+        hot_posts = get_dcard_hot_posts()
+        hot_posts_str = '\n'.join(hot_posts)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=hot_posts_str))
     else:
         message = TextSendMessage(text='收到')
         line_bot_api.reply_message(event.reply_token, (image_message,message))
