@@ -13,7 +13,6 @@ from bs4 import BeautifulSoup
 #======python的函數庫==========
 import tempfile, os
 import datetime
-import openai
 import time
 import random
 #======python的函數庫==========
