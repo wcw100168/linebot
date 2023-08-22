@@ -105,13 +105,14 @@ def handle_message(event):
     if 'Dcard' in msg:
         hot_posts = get_dcard_hot_posts()
         hot_posts_str = '\n'.join(hot_posts)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=hot_posts_str))
+        if hot_posts_str:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=hot_posts_str))
+        else:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='当前没有热门帖子'))
     else:
         message = TextSendMessage(text='收到')
         line_bot_api.reply_message(event.reply_token, (image_message,message))
-#        GPT_answer = GPT_response(msg)
-#        print(GPT_answer)
-#        line_bot_api.reply_message(event.reply_token, TextSendMessage(GPT_answer))
+
 
 
 @handler.add(PostbackEvent)
